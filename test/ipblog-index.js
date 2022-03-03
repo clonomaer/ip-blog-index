@@ -11,7 +11,7 @@ describe("IPBlog", function () {
   before(async () => {
     [owner, addr1, addr2, addr3] = await hre.ethers.getSigners();
 
-    const IpblogIndex = await hre.ethers.getContractFactory("ipblog-index");
+    const IpblogIndex = await hre.ethers.getContractFactory("IPBlogIndex");
     ipblogIndex = await IpblogIndex.deploy();
   });
 });
