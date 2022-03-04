@@ -7,3 +7,4 @@ artifacts
 yarn-error.log
 .env
 *secret*
+build

@@ -1,11 +1,12 @@
 {
   "name": "ipblog-index",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "./build",
   "license": "MIT",
   "scripts": {
     "test": "hardhat test",
-    "build": "hardhat compile",
+    "compile": "hardhat compile",
+    "build": "tsc",
     "clean": "hardhat clean",
     "deploy:bsctest": "npx hardhat run --network bsctest ./scripts/deploy.ts",
     "deploy:hardhat": "npx hardhat run --network hardhat ./scripts/deploy.ts"
