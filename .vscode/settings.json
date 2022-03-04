@@ -1,5 +1,5 @@
 {
   "cSpell.language": "en,en-GB,en-US",
   "cSpell.enableFiletypes": ["solidity"],
-  "cSpell.words": ["struct"]
+  "cSpell.words": ["ipblog", "struct"]
 }
