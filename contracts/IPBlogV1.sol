@@ -7,21 +7,22 @@ contract IPBlogV1 {
         address author;
     }
     mapping(bytes32 => Content) public detailsOf;
-    bytes32[] public allContents;
-    mapping(address => bytes32[]) public worksOf;
+    string[] public allContents;
+    mapping(address => string[]) public worksOf;
     address[] public allAuthors;
 
-    event NewPost(address author, bytes32 cid, uint256 timestamp);
+    event NewPost(address author, string cid, uint256 timestamp);
     event NewAuthor(address author);
 
     constructor() {}
 
-    function publish(bytes32 cid) external {
+    function publish(string memory cid) external {
+        bytes32 cidHash = keccak256(abi.encode(cid));
         require(
-            detailsOf[cid].author == address(0),
+            detailsOf[cidHash].author == address(0),
             "E0x01 cannot republish a content that is already published"
         );
-        detailsOf[cid] = Content(block.timestamp, msg.sender);
+        detailsOf[cidHash] = Content(block.timestamp, msg.sender);
         allContents.push(cid);
         if (worksOf[msg.sender].length == 0) {
             allAuthors.push(msg.sender);
@@ -31,7 +32,7 @@ contract IPBlogV1 {
         emit NewPost(msg.sender, cid, block.timestamp);
     }
 
-    function getAllContents() external view returns (bytes32[] memory) {
+    function getAllContents() external view returns (string[] memory) {
         return allContents;
     }
 
@@ -42,7 +43,7 @@ contract IPBlogV1 {
     function getWorksOf(address author)
         external
         view
-        returns (bytes32[] memory)
+        returns (string[] memory)
     {
         return worksOf[author];
     }
