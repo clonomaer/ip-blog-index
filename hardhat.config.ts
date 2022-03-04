@@ -26,10 +26,14 @@ const config: DeepPartial<
       blockGasLimit,
       chainId: 56,
       accounts: [
-        {
-          privateKey: process.env.MAIN_ACCOUNT_PK ?? "",
-          balance: "1000000000000000000",
-        },
+        ...(process.env.MAIN_ACCOUNT_PK
+          ? [
+              {
+                privateKey: process.env.MAIN_ACCOUNT_PK,
+                balance: "1000000000000000000",
+              },
+            ]
+          : []),
         ...randomPrivateKeys,
       ],
       mining: {
@@ -41,19 +45,25 @@ const config: DeepPartial<
       url: "http://127.0.0.1:8545",
       gasPrice,
       blockGasLimit,
-      accounts: [process.env.MAIN_ACCOUNT_PK ?? ""],
+      accounts: [
+        ...(process.env.MAIN_ACCOUNT_PK ? [process.env.MAIN_ACCOUNT_PK] : []),
+      ],
     },
     bsctest: {
       url: "https://data-seed-prebsc-1-s1.binance.org:8545",
       gasPrice,
       blockGasLimit,
-      accounts: [process.env.MAIN_ACCOUNT_PK ?? ""],
+      accounts: [
+        ...(process.env.MAIN_ACCOUNT_PK ? [process.env.MAIN_ACCOUNT_PK] : []),
+      ],
     },
     bscmain: {
       url: "https://bsc-dataseed1.defibit.io",
       gasPrice: 5000000000,
       blockGasLimit,
-      accounts: [process.env.MAIN_ACCOUNT_PK ?? ""],
+      accounts: [
+        ...(process.env.MAIN_ACCOUNT_PK ? [process.env.MAIN_ACCOUNT_PK] : []),
+      ],
     },
   },
   solidity: {
