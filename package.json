@@ -7,7 +7,7 @@
     "test": "hardhat test",
     "build": "hardhat compile",
     "clean": "hardhat clean",
-    "deploy:testnet": "npx hardhat run --network bsctest ./scripts/deploy.ts",
+    "deploy:bsctest": "npx hardhat run --network bsctest ./scripts/deploy.ts",
     "deploy:hardhat": "npx hardhat run --network hardhat ./scripts/deploy.ts"
   },
   "devDependencies": {
