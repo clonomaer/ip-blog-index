@@ -61,8 +61,8 @@ async function main() {
     packageMetaData.replace(
       /"version": "(\d+)\.(\d+)\.(\d+)",/,
       (_, g1, g2, g3) => {
-        version.push(g1, g2, g3);
-        return `"version": "${g1}.${g2}.${parseInt(g3) + 1}",`;
+        version.push(g1, g2, String(parseInt(g3) + 1));
+        return `"version": "${version.join(".")}",`;
       }
     )
   );
