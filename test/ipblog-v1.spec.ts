@@ -18,9 +18,7 @@ describe("IPBlog", function () {
     ipblogV1 = new IPBlogV1(await IPBlogV1Factory.deploy(), owner!);
   });
   it("Should list a new post", async () => {
-    const tx = ipblogV1.publish(sampleCID);
-    await expect(tx).not.to.be.reverted;
-    await tx.wait();
+    await expect(ipblogV1.publish(sampleCID)).not.to.be.reverted;
     const contents = await ipblogV1.getAllContents();
     expect(contents.length).to.be.greaterThan(0);
     expect(contents[0]!).to.eq(sampleCID);

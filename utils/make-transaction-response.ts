@@ -5,9 +5,7 @@ import { TransactionResponse } from "../types/web3";
 export function makeTransactionResponse(
   input: Promise<BaseTransactionResponse>
 ): TransactionResponse {
-  (input as TransactionResponse).wait = (confirmations) =>
-    input.then((response) =>
-      response.wait(confirmations ?? config.BlocksToWaitForConfirmation)
-    );
-  return input as TransactionResponse;
+  const res = input.then((x) => x.wait());
+  (res as TransactionResponse).transactionResponse = input;
+  return res as TransactionResponse;
 }
