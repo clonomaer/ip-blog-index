@@ -6,15 +6,20 @@
   "scripts": {
     "test": "hardhat test",
     "build": "hardhat compile",
-    "clean": "hardhat clean"
+    "clean": "hardhat clean",
+    "deploy:testnet": "npx hardhat run --network bsctest ./scripts/deploy.ts",
+    "deploy:hardhat": "npx hardhat run --network hardhat ./scripts/deploy.ts"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.5",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
     "@types/chai-as-promised": "^7.1.5",
+    "bip39": "^3.0.4",
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
     "chai-shallow-deep-equal": "^1.4.6",
+    "dotenv": "^16.0.0",
+    "ethereum-hdwallet": "^0.0.27",
     "ethereum-waffle": "^3.4.0",
     "ethers": "^5.5.2",
     "hardhat": "^2.7.0",
