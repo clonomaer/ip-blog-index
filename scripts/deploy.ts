@@ -51,6 +51,22 @@ async function main() {
     JSON.stringify({ address: ipblogV1.address, abi })
   );
   console.log("Deployment info successfully written!");
+
+  const packageMetaData = (
+    await readFile(path.join(__dirname, "..", "package.json"))
+  ).toString();
+  const version: string[] = [];
+  await writeFile(
+    path.join(__dirname, "..", "package.json"),
+    packageMetaData.replace(
+      /"version": "(\d+)\.(\d+)\.(\d+)",/,
+      (_, g1, g2, g3) => {
+        version.push(g1, g2, g3);
+        return `"version": "${g1}.${g2}.${parseInt(g3) + 1}",`;
+      }
+    )
+  );
+  console.log(`Version successfully bumped to: ${version.join(".")}`);
 }
 main()
   .then(() => process.exit(0))
